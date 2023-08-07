@@ -1,1 +1,3 @@
 # LeetCode
+
+**DO NOT COMMIT DIRECTLY**
