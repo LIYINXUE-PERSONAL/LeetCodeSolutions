@@ -43,4 +43,9 @@ public class Solution {
         }
         return false;
     }
+
+    private bool HashSetSearch(int[] nums, int target) {
+        HashSet<int> set = new HashSet<int>(nums);
+        return set.Contains(target);
+    }
 }
