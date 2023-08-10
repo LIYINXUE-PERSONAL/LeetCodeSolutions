@@ -44,6 +44,11 @@ public class Solution {
         return false;
     }
 
+    /// <summary>
+    /// Search using HashSet
+    /// Time to construct set is O(N)
+    /// Time to search is O(1)
+    /// </summary>
     private bool HashSetSearch(int[] nums, int target) {
         HashSet<int> set = new HashSet<int>(nums);
         return set.Contains(target);
