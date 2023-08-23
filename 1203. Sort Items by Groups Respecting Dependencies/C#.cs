@@ -21,7 +21,7 @@ public class Solution {
             }
         }
         
-        if (!TopoSort(itemGraph, itemIndegree, out List<int> itemOrder) || !TopoSort(groupGraph, groupIndegree, out List<int> groupOrder)) return new int[0];
+        if (!TryTopoSort(itemGraph, itemIndegree, out List<int> itemOrder) || !TryTopoSort(groupGraph, groupIndegree, out List<int> groupOrder)) return new int[0];
 
         List<int>[] orderedGroups = InitializeGraph(totalGroup);
         foreach (int i in itemOrder) {
