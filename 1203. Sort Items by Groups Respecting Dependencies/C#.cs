@@ -21,10 +21,7 @@ public class Solution {
             }
         }
         
-        List<int> itemOrder = TopoSort(itemGraph, itemIndegree);
-        List<int> groupOrder = TopoSort(groupGraph, groupIndegree);
-
-        if (itemOrder.Count == 0 || groupOrder.Count == 0) return new int[0];
+        if (!TopoSort(itemGraph, itemIndegree, out List<int> itemOrder) || !TopoSort(groupGraph, groupIndegree, out List<int> groupOrder)) return new int[0];
 
         List<int>[] orderedGroups = InitializeGraph(totalGroup);
         foreach (int i in itemOrder) {
@@ -46,8 +43,8 @@ public class Solution {
         return result;
     }
 
-    private List<int> TopoSort(List<int>[] graph, int[] indegree) {
-        List<int> order = new();
+    private bool TryTopoSort(List<int>[] graph, int[] indegree, out List<int> order) {
+        order = new();
         Queue<int> queue = new();
         for (int i = 0; i < graph.Length; i++) {
             if (indegree[i] == 0) {
@@ -60,6 +57,6 @@ public class Solution {
                 if (--indegree[next] == 0) queue.Enqueue(next);
             }
         }
-        return order.Count == graph.Length ? order : new();
+        return order.Count == graph.Length;
     }
 }
