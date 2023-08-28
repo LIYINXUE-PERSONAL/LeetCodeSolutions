@@ -1,4 +1,5 @@
 public class Solution {
+    // DP
     public bool CanCross(int[] stones) {
         int n = stones.Length;
         if (stones[1] != 1) return false;
@@ -21,6 +22,35 @@ public class Solution {
         }
         for (int i = 0; i < n; i++) {
             if (dp[n - 1, i]) return true;
+        }
+        return false;
+    }
+
+    // PriorityQueue
+    public bool CanCross(int[] stones) {
+        int n = stones.Length;
+        if (stones[1] != 1) return false;
+        Dictionary<int, int> map = new();
+        for (int i = 0; i < n; i++) {
+            map[stones[i]] = i;
+        }
+        PriorityQueue<(int i, int k), int> pq = new();
+        HashSet<(int i, int k)> visited = new();
+        pq.Enqueue((1, 1), -1);
+        while (pq.Count > 0) {
+            (int i, int k) cur = pq.Dequeue();
+            if (cur.i == n - 1) return true;
+            for (int j = -1; j <= 1; j++) {
+                int next = stones[cur.i] + cur.k + j;
+                if (next <= stones[cur.i]) continue;
+                if (map.ContainsKey(next)) {
+                    (int i, int k) _next = (map[next], next - stones[cur.i]);
+                    if (!visited.Contains(_next)) {
+                        pq.Enqueue(_next, -map[next]);
+                        visited.Add(_next);
+                    }
+                }
+            }
         }
         return false;
     }
