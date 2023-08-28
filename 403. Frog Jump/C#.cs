@@ -29,14 +29,13 @@ public class Solution {
     // PriorityQueue
     public bool CanCross(int[] stones) {
         int n = stones.Length;
-        if (stones[1] != 1) return false;
         Dictionary<int, int> map = new();
         for (int i = 0; i < n; i++) {
             map[stones[i]] = i;
         }
         PriorityQueue<(int i, int k), int> pq = new();
         HashSet<(int i, int k)> visited = new();
-        pq.Enqueue((1, 1), -1);
+        pq.Enqueue((0, 0), 0);
         while (pq.Count > 0) {
             (int i, int k) cur = pq.Dequeue();
             if (cur.i == n - 1) return true;
