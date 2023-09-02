@@ -41,8 +41,7 @@ public class TrieNode {
     public void SetWord(string word, int index = 0) {
         char c = word[index];
         if (!Children.ContainsKey(c)) Children[c] = new();
-        index++;
-        if (index < word.Length) Children[c].SetWord(word, index);
+        if (index < word.Length - 1) Children[c].SetWord(word, index + 1);
         else Children[c].SetEnd();
     }
 }
