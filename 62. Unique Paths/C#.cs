@@ -18,12 +18,16 @@ public class Solution {
     }
 
     public int UniquePathsMath(int m, int n) {
-        int N = m + n - 2;
-        int k = m - 1;
-
-        int result = 1;
-        for (int i = 1; i <= k; i++) {
-            result *= ((N - k - i) / i);
+        return (int)Combination(m + n - 2, m - 1);
+    }
+    public BigInteger Combination(int n, int r)
+    {
+        return Factorial(n) / (Factorial(r) * Factorial(n - r));
+    }
+    private BigInteger Factorial(int num) {
+        BigInteger result = 1;
+        for (int i = 1; i <= num; i++) {
+            result *= i;
         }
         return result;
     }
