@@ -19,5 +19,6 @@ public class Solution {
         return h1 == h2;
     }
 }
+
 // @lc code=end
 
