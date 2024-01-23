@@ -13,7 +13,7 @@ public class Solution {
         this.len = 0;
         this.arr = arr;
 
-        Helper(new(), 0);
+        Helper(new(26), 0);
 
         return len;
     }
@@ -24,7 +24,7 @@ public class Solution {
             return;
         }
         Helper(set, index + 1);
-        HashSet<char> temp = new();
+        HashSet<char> temp = new(26);
         foreach (char c in arr[index]) {
             if (set.Contains(c) || temp.Contains(c)) return;
             temp.Add(c);
